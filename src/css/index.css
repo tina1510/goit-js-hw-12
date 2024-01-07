@@ -1,0 +1,124 @@
+.input-search {
+    width: 272px;
+    border-radius: 4px;
+background: #FFF;
+color: #2E2F42;
+
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+letter-spacing: 0.64px;
+padding: 8px 16px;
+}
+.input-search::placeholder {
+    color: #808080;
+
+}
+button {
+    border-radius: 8px;
+background: #4E75FF;
+padding: 8px 16px;
+justify-content: center;
+align-items: center;
+
+color: #FFF;
+
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; /* 150% */
+letter-spacing: 0.64px;
+border: none;
+margin-left: 8px;
+}
+form {
+    padding-top: 36px;
+    text-align: center;
+}
+.gallery {
+    padding-top: 32px;
+    padding-left: 156px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-content: center;
+}
+.gallery-item {
+
+    width: calc(100% -48px) / 3;
+    border: 1px solid #808080;
+   
+}
+.text{
+    display: flex;
+    gap: 16px;
+    text-align: center;
+    justify-content: center;
+    
+}
+
+img {
+    width: 360px;
+    height: 200px;
+    display: block;
+   
+}
+
+
+
+
+
+
+
+.loader{
+    padding: 24px;
+    font-size: 24px;
+    color: #0e0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    position:relative;
+    margin: 0 auto;
+    
+  }
+  .loader:before{
+    content: '';
+    animation: 5s print linear alternate infinite;
+  }
+  .loader:after{
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translatey(-45%);
+    width: 2px;
+    height: 1.3em;
+    background: currentColor;
+    opacity: 0.8;
+    animation: 1s blink steps(2) infinite;
+  }
+  .loader.hidden {
+    display: none;
+  }
+  
+  @keyframes blink {
+    0%  { visibility: hidden;}
+    100%  { visibility: visible;}
+  }
+  @keyframes print {
+    0% { content: 'L'}
+    10% { content: 'Lo'}
+    20% { content: 'Loa'}
+    30% { content: 'Load'}
+    40% { content: 'Loadi'}
+    50% { content: 'Loadin'}
+    60% { content: 'Loading'}
+    70% { content: 'Loading.'}
+    80% { content: 'Loading..'}
+    90% , 100% { content: 'Loading...'}
+  }
