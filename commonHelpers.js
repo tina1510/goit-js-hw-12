@@ -1,0 +1,17 @@
+import{i as l,S as y,a as v}from"./assets/vendor-89feecc5.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))r(e);new MutationObserver(e=>{for(const s of e)if(s.type==="childList")for(const n of s.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&r(n)}).observe(document,{childList:!0,subtree:!0});function a(e){const s={};return e.integrity&&(s.integrity=e.integrity),e.referrerpolicy&&(s.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?s.credentials="include":e.crossorigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function r(e){if(e.ep)return;e.ep=!0;const s=a(e);fetch(e.href,s)}})();const L=document.querySelector("form"),m=document.querySelector(".gallery"),p=document.querySelector(".loader"),c=document.querySelector(".button-load");function w(){p.classList.remove("hidden")}function d(){p.classList.add("hidden")}document.addEventListener("DOMContentLoaded",()=>{c.classList.add("hidden"),d()});const x=async({query:o="",page:t=1,perPage:a=40})=>{const r=new URLSearchParams({key:"41516813-c0516a6d5bb80b940f21213c5",q:o,image_type:"photo",orientation:"horizontal",safesearch:!0,page:t,per_page:a});try{return(await v.get(`https://pixabay.com/api/?${r}`)).data}catch(e){console.error(e)}};let u=!1;const b=o=>{let t=1;const a=40;return async()=>{try{const{hits:r,total:e}=await x({page:t,perPage:a,query:o});return t>=Math.ceil(e/a)&&(u=!0),t+=1,r}catch(r){console.error(r)}}};let i=null;L.addEventListener("submit",async o=>{o.preventDefault();const t=o.currentTarget.elements.query.value;m.innerHTML="",u=!1,i!==null&&c.removeEventListener("click",i);const a=b(t);i=async()=>{w();const r=await a();await S(r),d()},await i(),c.addEventListener("click",async()=>{await i();const e=document.querySelector(".gallery-item").getBoundingClientRect().height;await window.scrollBy(0,e*2)})});function q(o){const t=o.reduce((a,{webformatURL:r,largeImageURL:e,tags:s,likes:n,views:f,comments:h,downloads:g})=>a+`
+            <div class="gallery-item">
+                <a href="${e}" data-lightbox="image">
+                    <img src="${r}" data-source="${e}" alt="${s}">
+                </a>
+                <div class="text-container">
+                    <div class="text-item"><p class="text">Likes:</p>
+                        <p class="likes"> ${n}</p></div>
+                    <div class="text-item"> <p class="text">Views: </p>
+                        <p class="views">${f}</p></div>
+                    <div class="text-item"> <p class="text">Comments:</p>
+                        <p class="comments"> ${h}</p></div>
+                    <div class="text-item"><p class="text">Downloads:</p>
+                        <p class="downloads"> ${g}</p></div>
+                </div>
+            </div>`,"");m.insertAdjacentHTML("beforeend",t)}async function S(o){try{o.length===0?l.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"}):(q(o),new y(".gallery a",{}).refresh(),u?(c.classList.add("hidden"),l.info({message:"We're sorry, but you've reached the end of search results.",position:"topRight"})):c.classList.remove("hidden"))}catch{throw d(),l.error({message:"Error",position:"topRight"}),new Error("Error")}}
+//# sourceMappingURL=commonHelpers.js.map
