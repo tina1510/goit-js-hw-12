@@ -11,6 +11,8 @@ const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 const loadBtn = document.querySelector('.button-load');
 
+const lightbox = new SimpleLightbox('.gallery a', {});
+
 
 function showLoader() {
     loader.classList.remove('hidden');
@@ -20,14 +22,13 @@ function hideLoader() {
     loader.classList.add('hidden');
 }
 
-document.addEventListener("DOMContentLoaded", () =>
-{
     loadBtn.classList.add("hidden");
     hideLoader()
-}
-)
+
 
 const fetchImages = async ({ query = "", page = 1, perPage = 40 }) => {
+
+   
     const searchParams = new URLSearchParams({
         key: `41516813-c0516a6d5bb80b940f21213c5`,
         q: query,
@@ -42,7 +43,10 @@ const fetchImages = async ({ query = "", page = 1, perPage = 40 }) => {
         const response = await axios.get(`https://pixabay.com/api/?${searchParams}`)
         return response.data;
     } catch (error) {
-        console.error(error);
+        iziToast.error({
+            message: `Error`,
+            position: 'topRight',
+        });
     }
 }
 
@@ -64,7 +68,10 @@ const createImageRequest = (query) => {
 
             return hits;
         } catch (error) {
-            console.error(error);
+            iziToast.error({
+                message: `Error`,
+                position: 'topRight',
+            });
         }
     };
 }
@@ -140,7 +147,7 @@ async function renderImages(images) {
             });
         } else {
             generateImageGalleryMarkup(images);
-            const lightbox = new SimpleLightbox('.gallery a', {});
+
             lightbox.refresh();
             if (isLastPage) {
                 loadBtn.classList.add("hidden");
